@@ -1,10 +1,10 @@
-# Write2Predict Overall
+# Overall
 A web demo for real-time handwriting recognition using Pytorch and Streamlit.
 Users can draw a digit or a letter on the canvas, then the AI model will predict 
 the character.
 
 # Dataset
-The dataset used is the EMNIST Balanced dataset which contains the image samples of digitals and letters
+The dataset used is the EMNIST Balanced dataset which contains the image samples of digits and letters
 but merge some confused letters (e.g. `C` and `c`) to 47 classes. All images are in a 28x28 pixel grayscale format.
 
 # Train the Model
@@ -43,4 +43,4 @@ The model runs 20 epochs and records each training loss, traning accuracy, valid
 
 # Website
 The web contains an canvas that allows the user to draw a character on it. After that, users can press `predict` button to get the predicted result of the CNN model. If there is nothing on canvas, the error will pop up.<br>
-write2predict-demo.streamlit.app/
+[Write2Predict website](https://write2predict-demo.streamlit.app/)
