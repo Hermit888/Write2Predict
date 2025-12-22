@@ -43,4 +43,4 @@ The model runs 20 epochs and records each training loss, traning accuracy, valid
 
 # Website
 The web contains an canvas that allows the user to draw a character on it. After that, users can press `predict` button to get the predicted result of the CNN model. If there is nothing on canvas, the error will pop up.<br>
-[Write2Predict website](https://write2predict-demo.streamlit.app/)
+Demo: [Write2Predict](https://write2predict-demo.streamlit.app/)
