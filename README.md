@@ -56,7 +56,6 @@ The web contains an canvas that allows the user to draw a character on it. After
 8. Resize to 28×28: resize the padded square tensor to (28, 28) using bilinear interpolation, matching the input size expected by the model.
 9. Normalize pixel values: scale the pixel values from [0, 1] to [-1, 1] because the model was trained with normalized inputs.
 10. Add batch dimension: add a batch dimension to obtain the final tensor of shape (1, 1, 28, 28) suitable for model input.
-<br>
 
 ### Demo
 [Write2Predict](https://write2predict-demo.streamlit.app/)
