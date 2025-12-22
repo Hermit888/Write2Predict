@@ -1,3 +1,5 @@
 torch
 torchvision
+torchvision
 streamlit
+PIL 

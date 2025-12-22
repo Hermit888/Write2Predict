@@ -5,7 +5,6 @@ import torch
 import torchvision.transforms as transforms
 import torchvision.transforms.functional as TF
 import torch.nn.functional as F
-import streamlit as st
 
 def process_image(canvas_result):
     """
