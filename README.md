@@ -26,7 +26,8 @@ input
 → dropout
 → linear layer 2
 → output 
-```<br>
+```
+<br>
 
 The kernel is 3×3 and the stride is 1.
 `batchnorm` is batch normalization that stabilizes and accelerates training by normalizing layer activations within a mini-batch. <br>
