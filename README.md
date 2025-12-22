@@ -42,5 +42,21 @@ The model runs 20 epochs and records each training loss, traning accuracy, valid
 `AI Training Model/emnist_cnn.pth` stores the model parameters and the total number of classes.
 
 # Website
+### Description
 The web contains an canvas that allows the user to draw a character on it. After that, users can press `predict` button to get the predicted result of the CNN model. If there is nothing on canvas, the error will pop up.<br>
-Demo: [Write2Predict](https://write2predict-demo.streamlit.app/)
+
+### Processing Real-Time Image
+1. Extract image data: convert the canvas result into a NumPy array with type `uint8` and retain only the RGB channels, discarding the alpha channel.
+2. Create a PIL image: generate a new PIL.Image object from the NumPy array to facilitate further image processing.
+3. Convert to grayscale: transform the RGB image into a single-channel grayscale image.
+4. Convert to PyTorch tensor: convert the grayscale image to a PyTorch tensor with values in the range [0, 1].
+5. Detect text region: identify the bounding box of the text by locating all pixels with intensity above a threshold (0.1). If no text is detected, return `None`.
+6. Crop the text region: extract only the portion of the tensor that contains the text, resulting in a tensor of shape (1, H, W).
+7. Pad to a square: create a square tensor whose side length equals the larger dimension of the cropped text region. Center the text within this square by adding zero-padding.
+8. Resize to 28×28: resize the padded square tensor to (28, 28) using bilinear interpolation, matching the input size expected by the model.
+9. Normalize pixel values: scale the pixel values from [0, 1] to [-1, 1] because the model was trained with normalized inputs.
+10. Add batch dimension: add a batch dimension to obtain the final tensor of shape (1, 1, 28, 28) suitable for model input.
+<br>
+
+### Demo
+[Write2Predict](https://write2predict-demo.streamlit.app/)
