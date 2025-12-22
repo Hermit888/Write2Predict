@@ -15,6 +15,7 @@ Load training data and test data from EMNIST dataset. Rotate the image by 90° t
 
 ### 2. Build the Model
 The foward of convolutional neural network (CNN) is following: <br>
+'''
 input
 → convolution layer 1 → batchnorm → ReLU
 → convolution layer 2 → batchnorm → ReLU
@@ -24,7 +25,8 @@ input
 → linear layer1 → ReLU
 → dropout
 → linear layer 2
-→ output <br>
+→ output 
+'''<br>
 
 The kernel is 3×3 and the stride is 1.
 `batchnorm` is batch normalization that stabilizes and accelerates training by normalizing layer activations within a mini-batch. <br>
