@@ -1,41 +1,30 @@
 import streamlit as st
 from streamlit_drawable_canvas import st_canvas
 
-import numpy as np
-from PIL import Image
+from process_image import process_image
+from predict_image import predict
 
-import torch
-import torchvision.transforms as transforms
-import torchvision.transforms.functional as TF
+st.title("Write2Predict")
+st.caption("Select a digit or a letter below, then draw it on the canvas")
+st.caption("['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'd', 'e', 'f', 'g', 'h', 'n', 'q', 'r', 't']")
 
 canvas_result = st_canvas(
+    stroke_width = 30,
     stroke_color='#FFFFFF',
     background_color= 'rgb(0, 0, 0)',
-    update_streamlit=False,
+    update_streamlit=True,
     height=420, # 28 * 15
     width=420
 )
 
 if st.button('Predict'):
     if canvas_result.image_data is not None:
-        # numpy (H, W, 4)
-        img = canvas_result.image_data.astype(np.uint8)
+        input = process_image(canvas_result)
 
-        # remove alpha
-        img = img[:, :, :3]
+        # pop up error messgae if there is no content
+        if input is None:
+            st.write("Please draw a digit or a letter on canvas")
+        else:
+            pred = predict(input)
 
-        # create new image from data object
-        pil_img = Image.fromarray(img)
-
-        # convert to grayscale
-        gray = TF.rgb_to_grascale(pil_img, num_output_channels=1)
-
-        # convert to tensor
-        to_tensor = transforms.ToTensor()
-        tensor = to_tensor(gray)
-
-        # binarization to set pixel values to 0 or 1
-        # avoid gray gradient appears at the edges
-        binary = (tensor > 0.05).float()
-
-        
+            st.write("Predicted character: ", pred)
